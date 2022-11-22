@@ -3,9 +3,10 @@ import useStockCalls from "../hooks/useStockCalls";
 
 const Home = () => {
   
-  const {getFirms}=useStockCalls()
+  const { getFirms, getSales } = useStockCalls();
   useEffect(() => {
     getFirms()
+    getSales()
   }, [])
   
    
