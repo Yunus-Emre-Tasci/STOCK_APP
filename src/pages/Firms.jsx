@@ -1,8 +1,10 @@
 import { Button, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import FirmCard from "../components/FirmCard";
+import FirmModal from "../components/modals/FirmModal";
 import useStockCalls from "../hooks/useStockCalls";
 
 
@@ -11,6 +13,13 @@ const Firms = () => {
 
   const { getFirms } = useStockCalls();
   const {firms}=useSelector((state)=>state.stock)
+  const [open, setOpen] = useState(false);
+  const [info, setInfo] = useState({
+    name:"",
+    phone:"",
+    address:"",
+    image:""
+    })
   // const dispatch=useDispatch()
   // const {token}=useSelector((state)=>state.auth)
   // const BASE_URL = "https://14151.fullstack.clarusway.com/";
@@ -37,13 +46,15 @@ const Firms = () => {
       <Typography variant="h4" color="error" mb={4}>
         Firms
       </Typography>
-      <Button variant="contained">New Firm</Button>
+      <Button variant="contained" onClick={()=>setOpen(true)}>New Firm</Button>
+
+      <FirmModal open={open} setOpen={setOpen} info={info} setInfo={setInfo} />
 
       {firms?.length > 0 && (
         <Grid container justifyContent="center" gap={3}>
           {firms?.map((firm) => (
             <Grid item>
-              <FirmCard key={firm.id} firm={firm}/>
+              <FirmCard key={firm.id} firm={firm} />
             </Grid>
           ))}
         </Grid>

@@ -17,7 +17,7 @@ export default function FirmCard({ firm }) {
       sx={{
         p: 2,
         maxWidth: "300px",
-        maxHeight: "400px",
+        maxHeight: "500px",
         minHeight: "400px",
         display: "flex",
         flexDirection: "column",
