@@ -11,8 +11,11 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
+import UpgradeIcon from "@mui/icons-material/Upgrade";
+import VerticalAlignBottomIcon from "@mui/icons-material/VerticalAlignBottom";
+
 import { useSelector } from "react-redux";
-import { btnHoverStyle } from "../styles/globalStyle";
+import { arrowStyle, btnHoverStyle } from "../styles/globalStyle";
 
 const Firms = () => {
   const { getBrands, getCategories, getProducts } = useStockCalls();
@@ -20,11 +23,21 @@ const Firms = () => {
   const [open, setOpen] = useState(false);
   const [info, setInfo] = useState({});
 
+  const [toggle, setToggle] = useState({
+    brand: false,
+    name: false,
+    stock: 1,
+  });
+
   useEffect(() => {
     getBrands();
     getCategories();
     getProducts();
   }, []);
+
+  const handleSortNumber = (arg) => {
+    setToggle({ ...toggle, [arg]: toggle[arg] * -1 });
+  };
 
   return (
     <Box>
@@ -45,9 +58,30 @@ const Firms = () => {
               <TableRow>
                 <TableCell align="center">#</TableCell>
                 <TableCell align="center">Category</TableCell>
-                <TableCell align="center">Brand</TableCell>
-                <TableCell align="center">Name</TableCell>
-                <TableCell align="center">Stock</TableCell>
+                <TableCell align="center">
+                  <Box sx={arrowStyle}>
+                    <div>Brand</div>
+                    {true && <UpgradeIcon />}
+                    {false && <VerticalAlignBottomIcon />}
+                  </Box>
+                </TableCell>
+                <TableCell align="center">
+                  <Box sx={arrowStyle}>
+                    <div>Name</div>
+                    {true && <UpgradeIcon />}
+                    {false && <VerticalAlignBottomIcon />}
+                  </Box>
+                </TableCell>
+                <TableCell align="center">
+                  <Box
+                    sx={arrowStyle}
+                    onClick={() => handleSortNumber("stock")}
+                  >
+                    <div>Stock</div>
+                    {toggle.stock === 1 && <UpgradeIcon />}
+                    {toggle.stock !== 1 && <VerticalAlignBottomIcon />}
+                  </Box>
+                </TableCell>
                 <TableCell align="center">Operation</TableCell>
               </TableRow>
             </TableHead>
