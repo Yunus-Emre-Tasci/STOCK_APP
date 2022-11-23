@@ -38,14 +38,26 @@ const useStockCalls = () => {
     const postStockData = async (info,url) => {
       try {
         await axiosWithToken.post(`stock/${url}/`, info);
-        toastSuccessNotify(`${url} successfuly deleted`);
+        toastSuccessNotify(`${url} successfuly posted`);
         getStockData(url);
       } catch (error) {
         console.log(error);
-        toastErrorNotify(`${url} can not be deleted`);
+        toastErrorNotify(`${url} can not be posted`);
       }
     };
     const postFirm = (info) => postStockData(info,"firms");
+
+    const putStockData = async (info, url) => {
+      try {
+        await axiosWithToken.put(`stock/${url}/${info.id}/`, info);
+        toastSuccessNotify(`${url} successfuly updated`);
+        getStockData(url);
+      } catch (error) {
+        console.log(error);
+        toastErrorNotify(`${url} can not be updated`);
+      }
+    };
+    const putFirm = (info) => putStockData(info, "firms");
 
 
   return {
@@ -55,6 +67,8 @@ const useStockCalls = () => {
     deleteFirm,
     postFirm,
     postStockData,
+    putFirm,
+    putStockData,
   };
 }
 

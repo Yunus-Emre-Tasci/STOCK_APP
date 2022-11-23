@@ -7,18 +7,20 @@ import { Button, TextField } from "@mui/material";
 import useStockCalls from "../../hooks/useStockCalls";
 
 export default function FirmModal({ open, setOpen, info, setInfo }) {
+  const { postFirm, putFirm } = useStockCalls();
 
-    const { postFirm, putFirm } = useStockCalls();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(info.id){
-        putFirm(info)
-    }else{
-        postFirm(info);
+    if (info.id) {
+      putFirm(info);
+    } else {
+      postFirm(info);
     }
-    setOpen(false)
-    setInfo({})
+    setOpen(false);
+    setInfo({});
   };
+
+  console.log(info);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,9 +31,9 @@ export default function FirmModal({ open, setOpen, info, setInfo }) {
     <div>
       <Modal
         open={open}
-        onClose={() =>{
-            setOpen(false)
-            setInfo({})
+        onClose={() => {
+          setOpen(false);
+          setInfo({});
         }}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -40,21 +42,21 @@ export default function FirmModal({ open, setOpen, info, setInfo }) {
           <Box component="form" onSubmit={handleSubmit} sx={flexCenter}>
             <TextField
               label="Firm Name"
-              required
               name="name"
               id="name"
               type="text"
               variant="outlined"
+              required
               value={info?.name || ""}
               onChange={handleChange}
             />
 
             <TextField
               label="Phone"
-              required
               name="phone"
               id="phone"
               type="tel"
+              required
               variant="outlined"
               value={info?.phone || ""}
               onChange={handleChange}
@@ -62,10 +64,10 @@ export default function FirmModal({ open, setOpen, info, setInfo }) {
 
             <TextField
               label="Address"
-              required
               name="address"
               id="address"
               type="text"
+              required
               variant="outlined"
               value={info?.address || ""}
               onChange={handleChange}
@@ -76,11 +78,12 @@ export default function FirmModal({ open, setOpen, info, setInfo }) {
               name="image"
               id="image"
               type="url"
+              required
               variant="outlined"
               value={info?.image || ""}
               onChange={handleChange}
             />
-            <Button type="submit" variant="contained">
+            <Button type="submit" variant="contained" size="large">
               Submit Firm
             </Button>
           </Box>
