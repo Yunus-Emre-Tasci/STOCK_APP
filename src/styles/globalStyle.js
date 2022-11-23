@@ -26,3 +26,12 @@ export const flexRow = {
     justifyContent: "center",
     gap: 1,
 };
+
+export const arrowStyle = {
+    display: "flex",
+    justifyContent: "center",
+    cursor: "pointer",
+    "&:hover": {
+        color: "red"
+    },
+};
