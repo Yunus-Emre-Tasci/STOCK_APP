@@ -23,6 +23,7 @@ const Products = () => {
   const { products } = useSelector((state) => state.stock);
   const [open, setOpen] = useState(false);
   const [info, setInfo] = useState({});
+  const [selectedBrands, setSelectedBrands] = useState([])
 
   useEffect(() => {
     getBrands();
@@ -77,6 +78,21 @@ const Products = () => {
       <Button variant="contained" onClick={() => setOpen(true)}>
         New Product
       </Button>
+
+      <MultiSelectBox
+        handleSelect={(value) => setSelectedNames(value)}
+        placeholder="Select Salespeople"
+        maxWidth="max-w-xs"
+      >
+        {salesPeople.map((item) => (
+          <MultiSelectBoxItem
+            key={item.name}
+            value={item.name}
+            text={item.name}
+          />
+        ))}
+      </MultiSelectBox>
+
       {/*
       <ProductModal open={open} setOpen={setOpen} info={info} setInfo={setInfo} /> */}
 
