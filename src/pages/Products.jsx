@@ -19,7 +19,8 @@ import { arrowStyle, btnHoverStyle, flexCenter } from "../styles/globalStyle";
 import useSortColumn from "../hooks/useSortColumn";
 import { MultiSelectBox, MultiSelectBoxItem } from "@tremor/react";
 const Products = () => {
-  const { getBrands, getCategories, getProducts } = useStockCalls();
+  const { getBrands, getCategories, getProducts, getProCatBrandsSuccess } =
+    useStockCalls();
   const { products, brands } = useSelector((state) => state.stock);
   const [open, setOpen] = useState(false);
   const [info, setInfo] = useState({});

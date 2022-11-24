@@ -5,12 +5,12 @@ const stockSlice = createSlice({
   name: "stock",
 
   initialState: {
-    purchases:null,
-    sales:null,
-    products:null,
-    brands:null,
-    firms:null,
-    categories:null,
+    purchases: null,
+    sales: null,
+    products: null,
+    brands: null,
+    firms: null,
+    categories: null,
     loading: false,
     error: false,
   },
@@ -19,9 +19,13 @@ const stockSlice = createSlice({
       state.loading = true;
       state.error = false;
     },
-    getSuccess: (state, { payload:{data,url} }) => {
+    getSuccess: (state, { payload: { data, url } }) => {
       state.loading = false;
-      state[url]=data
+      state[url] = data;
+    },
+    getProCatBrandsSuccess: (state, { payload: { data, url } }) => {
+      state.loading = false;
+      state[url] = data;
     },
     fetchFail: (state) => {
       state.loading = false;
@@ -30,5 +34,6 @@ const stockSlice = createSlice({
   },
 });
 
-export const { fetchStart, getSuccess, fetchFail } = stockSlice.actions;
+export const { fetchStart, getSuccess, fetchFail, getProCatBrandsSuccess } =
+  stockSlice.actions;
 export default stockSlice.reducer;
