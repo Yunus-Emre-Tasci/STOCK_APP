@@ -16,6 +16,7 @@ import VerticalAlignBottomIcon from "@mui/icons-material/VerticalAlignBottom";
 
 import { useSelector } from "react-redux";
 import { arrowStyle, btnHoverStyle } from "../styles/globalStyle";
+import useSortColumn from "../hooks/useSortColumn";
 
 const Products = () => {
   const { getBrands, getCategories, getProducts } = useStockCalls();
@@ -37,11 +38,13 @@ const Products = () => {
     // setSortedProducts(products);
   // }, [products]);
 
-  const [toggle, setToggle] = useState({
+  const columnObj = {
     brand: 1,
     name: 1,
     stock: 1,
-  });
+  }
+
+  const {sortedData,handleSort,columns}=useSortColumn(products,columnObj)
 
   //? Jenerik Sutun siralama fonksiyonu
   // const handleSort = (arg, type) => {
@@ -77,7 +80,7 @@ const Products = () => {
       {/*
       <ProductModal open={open} setOpen={setOpen} info={info} setInfo={setInfo} /> */}
 
-      {sortedProducts?.length > 0 && (
+      {sortedData?.length > 0 && (
         <TableContainer component={Paper} sx={{ mt: 3 }} elevation={10}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -90,8 +93,8 @@ const Products = () => {
                     onClick={() => handleSort("brand", "text")}
                   >
                     <div>Brand</div>
-                    {toggle.brand === 1 && <UpgradeIcon />}
-                    {toggle.brand !== 1 && <VerticalAlignBottomIcon />}
+                    {columns.brand === 1 && <UpgradeIcon />}
+                    {columns.brand !== 1 && <VerticalAlignBottomIcon />}
                   </Box>
                 </TableCell>
                 <TableCell align="center">
@@ -100,8 +103,8 @@ const Products = () => {
                     onClick={() => handleSort("name", "text")}
                   >
                     <div>Name</div>
-                    {toggle.name === 1 && <UpgradeIcon />}
-                    {toggle.name !== 1 && <VerticalAlignBottomIcon />}
+                    {columns.name === 1 && <UpgradeIcon />}
+                    {columns.name !== 1 && <VerticalAlignBottomIcon />}
                   </Box>
                 </TableCell>
                 <TableCell align="center">
@@ -110,15 +113,15 @@ const Products = () => {
                     onClick={() => handleSort("stock", "number")}
                   >
                     <div>Stock</div>
-                    {toggle.stock === 1 && <UpgradeIcon />}
-                    {toggle.stock !== 1 && <VerticalAlignBottomIcon />}
+                    {columns.stock === 1 && <UpgradeIcon />}
+                    {columns.stock !== 1 && <VerticalAlignBottomIcon />}
                   </Box>
                 </TableCell>
                 <TableCell align="center">Operation</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {sortedProducts.map((product, index) => (
+              {sortedData.map((product, index) => (
                 <TableRow
                   key={product.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
