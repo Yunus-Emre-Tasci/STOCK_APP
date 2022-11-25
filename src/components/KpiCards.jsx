@@ -26,21 +26,21 @@ const KpiCards = () => {
   const data = [
     {
       title: "sales",
-      metric: `$${total(sales) || 0}`,
+      metric: `$${total(sales) || ""}`,
       icon: <MonetizationOnIcon sx={{ fontSize: "3rem" }} />,
       color: indigo[900],
       bgColor: indigo[100],
     },
     {
       title: "profit",
-      metric: `$${totalProfit || 0}`,
+      metric: `$${totalProfit || ""}`,
       icon: <PaymentsIcon sx={{ fontSize: "3rem" }} />,
       color: pink[900],
       bgColor: pink[100],
     },
     {
       title: "purchases",
-      metric: `$${total(purchases) || 0}`,
+      metric: `$${total(purchases) || ""}`,
       icon: <ShoppingCartIcon sx={{ fontSize: "3rem" }} />,
       color: amber[900],
       bgColor: amber[100],
