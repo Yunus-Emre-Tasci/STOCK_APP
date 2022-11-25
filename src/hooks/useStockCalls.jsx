@@ -40,7 +40,7 @@ const useStockCalls = () => {
           [axiosWithToken.get("stock/brands/")]
         );
         dispatch(
-          getProCatBrandsSuccess(products.data, categories.data, brands.data)
+          getProCatBrandsSuccess(products?.data, categories?.data, brands?.data)
         );
       } catch (error) {
         
