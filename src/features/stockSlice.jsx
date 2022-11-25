@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const stockSlice = createSlice({
   name: "stock",
 
@@ -23,9 +22,11 @@ const stockSlice = createSlice({
       state.loading = false;
       state[url] = data;
     },
-    getProCatBrandsSuccess: (state, { payload: { data, url } }) => {
+    getProCatBrandsSuccess: (state, { payload }) => {
       state.loading = false;
-      state[url] = data;
+      state.products = payload[0];
+      state.categories = payload[1];
+      state.brands = payload[2];
     },
     fetchFail: (state) => {
       state.loading = false;
