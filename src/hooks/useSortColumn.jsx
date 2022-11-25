@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 
-
 const useSortColumn = (data, columnObj) => {
+  //? Siralanacak local state (sutun verilerinin local state hali)
   const [sortedData, setSortedData] = useState(data);
   const [columns, setColumns] = useState(columnObj);
 
+  //! data state'i her guncellendiginde local state'i de guncelle
   useEffect(() => {
     setSortedData(data);
   }, [data]);
@@ -15,9 +16,7 @@ const useSortColumn = (data, columnObj) => {
       sortedData
         ?.map((item) => item)
         .sort((a, b) => {
-          if (type === "date") {
-            return columns[arg] * (new Date(a[arg]) - new Date(b[arg]));
-          } else if (type === "number") {
+          if (type === "number") {
             return columns[arg] * (a[arg] - b[arg]);
           } else {
             if (columns[arg] === 1) {
@@ -30,7 +29,7 @@ const useSortColumn = (data, columnObj) => {
     );
   };
 
-  return { handleSort, sortedData, columns };
+  return { sortedData, handleSort, columns };
 };
 
-export default useSortColumn
+export default useSortColumn;
