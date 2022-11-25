@@ -3,26 +3,30 @@ import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import { indigo, pink, amber } from "@mui/material/colors";
-import { flex } from "../styles/globalStyle";
 import { useSelector } from "react-redux";
 
 const KpiCards = () => {
   const { sales, purchases } = useSelector((state) => state.stock);
 
-  const totalSales = sales?.map((sale)=>Number(sale.price_total)).reduce((acc,val)=>acc+val,0)
+  // const totalSales = sales
+  //   ?.map((sale) => Number(sale.price_total))
+  //   .reduce((acc, val) => acc + val, 0);
 
-  const totalPurchases = purchases
-    ?.map((purchases) => Number(purchases.price_total))
-    .reduce((acc, val) => acc + val, 0);
+  // const totalPurchases = purchases
+  //   ?.map((purchase) => Number(purchase.price_total))
+  //   .reduce((acc, val) => acc + val, 0);
 
-    const totalProfit = totalSales - totalPurchases;
+  const total = (data) =>
+    data
+      ?.map((item) => Number(item.price_total))
+      .reduce((acc, val) => acc + val, 0);
 
-  console.log(totalSales)
+  const totalProfit = total(sales) - total(purchases);
 
   const data = [
     {
       title: "sales",
-      metric: `$${totalSales || 0}`,
+      metric: `$${total(sales) || 0}`,
       icon: <MonetizationOnIcon sx={{ fontSize: "3rem" }} />,
       color: indigo[900],
       bgColor: indigo[100],
@@ -36,7 +40,7 @@ const KpiCards = () => {
     },
     {
       title: "purchases",
-      metric: `$${totalPurchases || 0}`,
+      metric: `$${total(purchases) || 0}`,
       icon: <ShoppingCartIcon sx={{ fontSize: "3rem" }} />,
       color: amber[900],
       bgColor: amber[100],
@@ -46,7 +50,7 @@ const KpiCards = () => {
   return (
     <Grid container justifyContent="center" alignItems="center" spacing={2}>
       {data.map((item) => (
-        <Grid item key={item.title} sx={{ width: "400px" }}>
+        <Grid item key={item.title} sx={{ width: "300px" }}>
           <Paper sx={{ p: 2 }} elevation={10}>
             <Box sx={{ display: "flex" }}>
               <Avatar
