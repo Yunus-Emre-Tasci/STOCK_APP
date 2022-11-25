@@ -18,9 +18,15 @@ import { useSelector } from "react-redux";
 import { arrowStyle, btnHoverStyle, flexCenter } from "../styles/globalStyle";
 import useSortColumn from "../hooks/useSortColumn";
 import { MultiSelectBox, MultiSelectBoxItem } from "@tremor/react";
+
 const Products = () => {
-  const { getBrands, getCategories, getProducts, getProCatBrandsSuccess } =
-    useStockCalls();
+  const {
+    getBrands,
+    getCategories,
+    getProducts,
+    deleteProduct,
+    getProCatBrands,
+  } = useStockCalls();
   const { products, brands } = useSelector((state) => state.stock);
   const [open, setOpen] = useState(false);
   const [info, setInfo] = useState({});
@@ -28,9 +34,10 @@ const Products = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
 
   useEffect(() => {
-    getBrands();
-    getCategories();
-    getProducts();
+    // getBrands();
+    // getCategories();
+    // getProducts();
+    getProCatBrands();
   }, []);
 
   const columnObj = {
@@ -188,7 +195,10 @@ const Products = () => {
                     <TableCell align="center">{product.brand}</TableCell>
                     <TableCell align="center">{product.name}</TableCell>
                     <TableCell align="center">{product.stock}</TableCell>
-                    <TableCell align="center">
+                    <TableCell
+                      align="center"
+                      onClick={() => deleteProduct(product.id)}
+                    >
                       <DeleteIcon sx={btnHoverStyle} />
                     </TableCell>
                   </TableRow>
