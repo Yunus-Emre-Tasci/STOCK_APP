@@ -1,5 +1,11 @@
 import { useDispatch } from "react-redux";
-import { fetchFail, fetchStart, getSuccess,deleteProduct } from "../features/stockSlice";
+import {
+  fetchFail,
+  fetchStart,
+  getSuccess,
+  deleteProduct,
+  getProCatBrandsSuccess,
+} from "../features/stockSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 import useAxios from "./useAxios";
 
