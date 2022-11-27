@@ -8,6 +8,11 @@ const Charts = () => {
   const dataFormatter = (number) =>
     `${Intl.NumberFormat("us").format(number).toString()}%`;
 
+  const salesData = sales?.map((sale) => ({
+    date: sale.createds,
+    sales: sale.price_total,
+  }));
+
   return (
     <Grid container>
       <Grid item>
