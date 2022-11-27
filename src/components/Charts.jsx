@@ -1,9 +1,31 @@
-import React from 'react'
+import { Card, Grid, Typography } from "@mui/material";
+import { LineChart } from "@tremor/react";
+import { useSelector } from "react-redux";
 
 const Charts = () => {
-  return (
-    <div>Charts</div>
-  )
-}
+  const {sales,purchases}=useSelector((state)=>state.stock)
 
-export default Charts
+  const dataFormatter = (number) =>
+    `${Intl.NumberFormat("us").format(number).toString()}%`;
+
+  return (
+    <Grid container>
+      <Grid item>
+        <Card>
+          <Typography>Daily Sales (USD)</Typography>
+          <LineChart
+            data={chartdata}
+            dataKey="year"
+            categories={["Population growth rate"]}
+            colors={["blue"]}
+            valueFormatter={dataFormatter}
+            marginTop="mt-6"
+            yAxisWidth="w-10"
+          />
+        </Card>
+      </Grid>
+    </Grid>
+  );
+};
+
+export default Charts;
