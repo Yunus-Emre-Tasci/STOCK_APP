@@ -6,26 +6,43 @@ const Charts = () => {
   const {sales,purchases}=useSelector((state)=>state.stock)
 
   const dataFormatter = (number) =>
-    `${Intl.NumberFormat("us").format(number).toString()}%`;
+    `$${Intl.NumberFormat("us").format(number).toString()}`;
 
-  const salesData = sales?.map((sale) => ({
-    date: sale.createds,
-    sales: sale.price_total,
+  const salesData = sales?.map((item) => ({
+    date: item.createds,
+    sales: Number(item.price_total),
+  }));
+
+  const purchasesData = purchases?.map((item) => ({
+    date: item.createds,
+    sales: Number(item.price_total),
   }));
 
   return (
-    <Grid container>
-      <Grid item>
-        <Card>
+    <Grid container justifyContent="center" spacing={2} mt={3}>
+      <Grid item sm={12} md={6}>
+        <Card sx={{ p: 3 }}>
           <Typography>Daily Sales (USD)</Typography>
           <LineChart
-            data={chartdata}
-            dataKey="year"
-            categories={["Population growth rate"]}
+            data={salesData}
+            dataKey="date"
+            categories={["sales"]}
             colors={["blue"]}
             valueFormatter={dataFormatter}
             marginTop="mt-6"
-            yAxisWidth="w-10"
+          />
+        </Card>
+      </Grid>
+      <Grid item sm={12} md={6}>
+        <Card sx={{ p: 3 }}>
+          <Typography>Daily Purchases (USD)</Typography>
+          <LineChart
+            data={purchasesData}
+            dataKey="date"
+            categories={["purchases"]}
+            colors={["blue"]}
+            valueFormatter={dataFormatter}
+            marginTop="mt-6"
           />
         </Card>
       </Grid>
