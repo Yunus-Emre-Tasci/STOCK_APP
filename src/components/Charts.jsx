@@ -1,9 +1,10 @@
+import React from "react";
 import { Card, Grid, Typography } from "@mui/material";
 import { LineChart } from "@tremor/react";
 import { useSelector } from "react-redux";
 
 const Charts = () => {
-  const {sales,purchases}=useSelector((state)=>state.stock)
+  const { sales, purchases } = useSelector((state) => state.stock);
 
   const dataFormatter = (number) =>
     `$${Intl.NumberFormat("us").format(number).toString()}`;
@@ -15,7 +16,7 @@ const Charts = () => {
 
   const purchasesData = purchases?.map((item) => ({
     date: item.createds,
-    sales: Number(item.price_total),
+    purchases: Number(item.price_total),
   }));
 
   return (
@@ -40,7 +41,7 @@ const Charts = () => {
             data={purchasesData}
             dataKey="date"
             categories={["purchases"]}
-            colors={["blue"]}
+            colors={["red"]}
             valueFormatter={dataFormatter}
             marginTop="mt-6"
           />
