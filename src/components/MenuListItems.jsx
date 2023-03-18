@@ -48,10 +48,10 @@ const icons = [
     url: "/stock/products/",
   },
   {
-  title: "Admin Panel",
-  icon: <SupervisorAccountIcon />,
-  url: "https://14151.fullstack.clarusway.com/admin",
-},
+    title: "Admin Panel",
+    icon: <SupervisorAccountIcon />,
+    url: "http://127.0.0.1:8000/admin",
+  },
 ];
 
 const iconStyle = {
