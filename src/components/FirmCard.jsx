@@ -14,13 +14,15 @@ export default function FirmCard({ firm,setOpen,setInfo }) {
   const { deleteFirm } = useStockCalls();
   return (
     <Card
+      elevation={10}
       sx={{
         p: 2,
         maxWidth: "300px",
-        maxHeight: "500px",
+        maxHeight: "470px",
         minHeight: "400px",
         display: "flex",
         flexDirection: "column",
+        marginTop:"20px"
       }}
     >
       <CardHeader title={firm?.name} subheader={firm?.address} />
@@ -38,10 +40,13 @@ export default function FirmCard({ firm,setOpen,setInfo }) {
         </Typography>
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-        <EditIcon sx={btnHoverStyle} onClick={()=>{
-          setOpen(true)
-          setInfo(firm)
-        }} />
+        <EditIcon
+          sx={btnHoverStyle}
+          onClick={() => {
+            setOpen(true);
+            setInfo(firm);
+          }}
+        />
         <DeleteOutlineIcon
           sx={btnHoverStyle}
           onClick={() => deleteFirm(firm?.id)}
