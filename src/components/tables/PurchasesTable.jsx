@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -62,7 +62,7 @@ const PurchasesTable = ({
                 {columns.created !== 1 && <VerticalAlignBottomIcon />}
               </Box>
             </TableCell>
-            <TableCell align="center">Category</TableCell>
+            {/* <TableCell align="center">Category</TableCell> */}
             <TableCell align="center">
               <Box sx={arrowStyle} onClick={() => handleSort("firm")}>
                 <Typography variant="body" noWrap>
@@ -132,7 +132,7 @@ const PurchasesTable = ({
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell align="center">{item.createds}</TableCell>
-                <TableCell align="center">{item.category[0]?.name}</TableCell>
+                {/* <TableCell align="center">{item.category[0]?.name}</TableCell> */}
                 <TableCell align="center">{item.firm}</TableCell>
                 <TableCell align="center">{item.brand}</TableCell>
                 <TableCell align="center">{item.product}</TableCell>
