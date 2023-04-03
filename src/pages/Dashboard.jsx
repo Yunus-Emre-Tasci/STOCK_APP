@@ -93,7 +93,7 @@ function Dashboard(props) {
           }}
           PaperProps={{
             sx: {
-              backgroundColor: blueGrey[900],
+              backgroundColor: "blueGrey[900]",
             },
           }}
         >
@@ -124,10 +124,11 @@ function Dashboard(props) {
           flexGrow: 1,
           p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
+          backgroundColor: "#F8F9FA",
         }}
       >
-        <Toolbar/>
-        <Outlet/>
+        <Toolbar />
+        <Outlet />
       </Container>
     </Box>
   );

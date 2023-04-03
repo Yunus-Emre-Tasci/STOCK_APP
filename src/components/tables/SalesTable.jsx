@@ -29,7 +29,7 @@ const SalesTable = ({ setOpen, setInfo, selectedProducts, selectedBrands }) => {
     price: 1,
     product: 1,
     brand: 1,
-  };
+  }
 
   const { sortedData, handleSort, columns } = useSortColumn(sales, columnObj);
 
@@ -102,8 +102,8 @@ const SalesTable = ({ setOpen, setInfo, selectedProducts, selectedBrands }) => {
                 <Typography variant="body" noWrap>
                   Amount
                 </Typography>
-                {columns.amount === 1 && <UpgradeIcon />}
-                {columns.amount !== 1 && <VerticalAlignBottomIcon />}
+                {columns.price_total === 1 && <UpgradeIcon />}
+                {columns.price_total !== 1 && <VerticalAlignBottomIcon />}
               </Box>
             </TableCell>
             <TableCell align="center">Operation</TableCell>
