@@ -2,7 +2,8 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 // const BASE_URL = "https://14151.fullstack.clarusway.com/";
-const BASE_URL = "http://127.0.0.1:8000/";
+// const BASE_URL = "http://127.0.0.1:8000/";
+const BASE_URL = "https://yunusemre.pythonanywhere.com/";
 
 //* Token'siz api istekleri icin bir instance oluştur.
 export const axiosPublic = axios.create({
