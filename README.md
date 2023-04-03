@@ -1,4 +1,3 @@
-# Redux Toolkit Ornegi
 
 ## `Kurulum`
 
