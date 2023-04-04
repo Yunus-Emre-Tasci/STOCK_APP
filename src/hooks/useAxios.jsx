@@ -8,6 +8,7 @@ const BASE_URL = "https://yunusemre.pythonanywhere.com/";
 //* Token'siz api istekleri icin bir instance oluştur.
 export const axiosPublic = axios.create({
   baseURL: BASE_URL,
+  mode: "cors",
 });
 
 const useAxios = () => {
@@ -17,6 +18,7 @@ const useAxios = () => {
   const axiosWithToken = axios.create({
     baseURL: BASE_URL,
     headers: { Authorization: `Token ${token}` },
+    mode: "cors",
   });
 
   return { axiosWithToken };
