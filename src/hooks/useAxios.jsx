@@ -10,7 +10,6 @@ export const axiosPublic = axios.create({
   baseURL: BASE_URL,
   mode: "cors",
 });
-
 const useAxios = () => {
   const { token } = useSelector((state) => state.auth);
 
