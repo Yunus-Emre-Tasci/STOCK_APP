@@ -24,6 +24,7 @@ const Login = () => {
         sx={{
           height: "100vh",
           p: 2,
+          backgroundColor: "#F8F9FA",
         }}
       >
         <Grid item xs={12} mb={3}>
